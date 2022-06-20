@@ -1,4 +1,5 @@
-import algoliasearch from 'algoliasearch/lite'
+import algoliasearch from 'algoliasearch'
+import axios from 'axios'
 
 const searchClient = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_APP_ID!,
@@ -18,4 +19,8 @@ export const getAllFoodTypes = async (): Promise<{ [key: string]: number }> => {
   } catch (err) {
     throw err
   }
+}
+
+export const deleteRestaurantFromIndex = async (objectID: string) => {
+  return axios.delete(`/api/restaurants?restaurantID=${objectID}`)
 }

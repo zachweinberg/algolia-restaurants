@@ -1,12 +1,9 @@
-import { InfiniteHits } from 'react-instantsearch-hooks-web'
+import classNames from 'classnames'
+import { InfiniteHits, Hits } from 'react-instantsearch-hooks-web'
 import { Restaurant } from '~/types'
 import StarRatingRow from './StarRatingRow'
 
-interface Props {
-  onDelete: () => void
-}
-
-const RestaurantCard = ({ hit, onDelete }) => {
+const RestaurantCard = ({ hit, onClickDelete, isDeleting }) => {
   const restaurant = hit as Restaurant
 
   if (!restaurant) {
@@ -33,23 +30,43 @@ const RestaurantCard = ({ hit, onDelete }) => {
           )}
         </div>
 
-        <button
-          onClick={() => onDelete(restaurant.objectID)}
-          className="p-2 text-xs text-white bg-red-500 rounded-md"
+        <p
+          onClick={() => {
+            if (!isDeleting) {
+              onClickDelete(restaurant.objectID)
+            }
+          }}
+          className={classNames(
+            isDeleting && 'opacity-40',
+            'p-2 text-xs text-red-500 rounded-md cursor-pointer hover:text-red-400'
+          )}
         >
           Delete
-        </button>
+        </p>
       </div>
     </div>
   )
 }
 
-const SearchResults: React.FunctionComponent<Props> = ({ onDelete }: Props) => {
+interface Props {
+  onClickDelete: (objectID: string) => void
+  isDeleting: boolean
+}
+
+const SearchResults: React.FunctionComponent<Props> = ({
+  onClickDelete,
+  isDeleting,
+}: Props) => {
   return (
     <div className="p-6 h-[35rem] overflow-auto w-full">
-      <InfiniteHits
-        showPrevious={false}
-        hitComponent={(p) => <RestaurantCard onDelete={onDelete} {...p} />}
+      <Hits
+        hitComponent={(props) => (
+          <RestaurantCard
+            onClickDelete={onClickDelete}
+            isDeleting={isDeleting}
+            {...props}
+          />
+        )}
       />
     </div>
   )

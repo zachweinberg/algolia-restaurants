@@ -1,38 +1,58 @@
 import type { NextPage } from 'next'
-import { useState } from 'react'
-import ConfirmModal from '~/components/ConfirmModal'
+import { useEffect, useState } from 'react'
+import { useClearRefinements, useInstantSearch } from 'react-instantsearch-hooks-web'
 import FoodTypeFilter from '~/components/FoodTypeFilter'
 import Footer from '~/components/Footer'
 import RestaurantSearchBar from '~/components/RestaurantSearchBar'
 import SearchResults from '~/components/SearchResults'
+import { deleteRestaurantFromIndex, getAllFoodTypes } from '~/lib/algolia'
 
 const Home: NextPage = () => {
-  const [deleteRestaurantID, setDeleteRestaurantID] = useState<string | null>(null)
+  const { refresh } = useInstantSearch()
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [allFoodTypes, setAllFoodTypes] = useState<{ [foodType: string]: number }>({})
+  const { refine: clearRefine } = useClearRefinements()
 
-  const onDelete = () => {
-    setDeleteRestaurantID('asdf')
+  const loadFoodTypes = async () => {
+    try {
+      const foodTypes = await getAllFoodTypes()
+      setAllFoodTypes(foodTypes)
+    } catch (e) {
+      console.error(e)
+      alert('Could not load all food types.')
+    }
+  }
+
+  useEffect(() => {
+    loadFoodTypes()
+  }, [])
+
+  const onDeleteRestaurant = async (objectID: string) => {
+    try {
+      setIsDeleting(true)
+      await deleteRestaurantFromIndex(objectID)
+      loadFoodTypes()
+      clearRefine()
+      refresh()
+    } catch (err) {
+      console.error(err)
+      alert('Could not delete restaurant from Algolia.')
+    } finally {
+      setIsDeleting(false)
+    }
   }
 
   return (
-    <>
-      <ConfirmModal
-        open={deleteRestaurantID !== null}
-        description="Are you sure you want to delete this restaurant?"
-        onCancel={() => setDeleteRestaurantID(null)}
-        onConfirm={() => alert(1)}
-      />
+    <div className="max-w-6xl mx-auto mt-10 border border-gray-200 shadow-md">
+      <RestaurantSearchBar />
 
-      <div className="max-w-6xl mx-auto mt-10 border border-gray-200 shadow-md">
-        <RestaurantSearchBar />
-
-        <div className="flex">
-          <FoodTypeFilter />
-          <SearchResults onDelete={onDelete} />
-        </div>
-
-        <Footer />
+      <div className="flex">
+        <FoodTypeFilter foodTypes={allFoodTypes} />
+        <SearchResults onClickDelete={onDeleteRestaurant} isDeleting={isDeleting} />
       </div>
-    </>
+
+      <Footer />
+    </div>
   )
 }
 

@@ -9,11 +9,11 @@ const StarRatingRow: React.FunctionComponent<Props> = ({ numStars }: Props) => {
 
   return (
     <div className="flex items-center space-x-1">
-      {[...Array(numEmptyStars)].map((_, i) => (
-        <StarIcon color="transparent" key={i} />
-      ))}
       {[...Array(numStars)].map((_, i) => (
         <StarIcon color="gold" key={i} />
+      ))}
+      {[...Array(numEmptyStars)].map((_, i) => (
+        <StarIcon color="transparent" key={i} />
       ))}
     </div>
   )
