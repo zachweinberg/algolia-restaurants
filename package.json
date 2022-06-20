@@ -1,5 +1,6 @@
 {
   "name": "algolia-restaurants",
+  "author": "Zach Weinberg",
   "version": "0.1.0",
   "private": true,
   "scripts": {
