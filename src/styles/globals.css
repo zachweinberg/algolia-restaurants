@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-overlay[data-state='open'],
+.modal-contentWrapper[data-state='open'] {
+  animation: fadeIn 120ms ease-out;
+}
+
+.modal-overlay[data-state='closed'],
+.modal-contentWrapper[data-state='closed'] {
+  animation: fadeOut 120ms ease-in;
+}

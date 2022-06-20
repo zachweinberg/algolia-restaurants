@@ -18,7 +18,7 @@ const FoodTypeFilter: React.FunctionComponent = () => {
       return map
     }, {})
   }, [currentRefinementItems])
-  console.log(currentRefinementItems)
+
   const loadFoodTypes = async () => {
     try {
       const foodTypes = await getAllFoodTypes()
@@ -40,7 +40,12 @@ const FoodTypeFilter: React.FunctionComponent = () => {
         <Spinner size={10} />
       ) : (
         <>
-          <p className="font-medium mb-4">Cuisine Type</p>
+          {/* TODO: Make sticky */}
+          <p className="mb-4 font-medium">
+            Cuisine Type{' '}
+            {Object.keys(currentFoodTypesSelected).length > 0 &&
+              `(${Object.keys(currentFoodTypesSelected).length})`}
+          </p>
 
           {/* 
             We could use the built in RefinementList component from InstantSearch below, but I chose to build my own

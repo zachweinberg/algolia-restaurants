@@ -1,9 +1,10 @@
 const Footer: React.FunctionComponent = () => {
   return (
-    <div className="p-3 flex justify-end border-t border-gray-200">
-      <p className="text-gray-500 text-sm">
+    <div className="flex justify-end p-3 border-t border-gray-200">
+      <p className="text-sm text-gray-500">
         Powered by{' '}
         <a
+          rel="noreferrer"
           href="https://algolia.com"
           target="_blank"
           className="font-semibold hover:text-gray-700"

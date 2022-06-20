@@ -1,4 +1,5 @@
 export interface Restaurant {
+  objectID: string
   name?: string
   address?: string
   area?: string
