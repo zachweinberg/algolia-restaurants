@@ -14,7 +14,10 @@ const RestaurantCard = ({ hit, onClickDelete, isDeleting }) => {
     <div className="flex py-6 border-b border-gray-100">
       <img
         className="w-24 h-24 rounded-sm"
-        src={restaurant.image_url}
+        src={
+          restaurant.image_url ??
+          'https://cdn.otstatic.com/legacy-cw/default2-original.png'
+        }
         alt="restaurant image"
       />
       <div className="flex items-end justify-between w-full ml-4">

@@ -51,7 +51,7 @@ const FoodTypeFilter: React.FunctionComponent<Props> = ({ foodTypes }: Props) =>
               currentFoodTypesSelected[foodType]
                 ? 'text-white bg-gray-500'
                 : 'text-gray-600 hover:text-white hover:bg-gray-500',
-              'flex text-sm items-start justify-between px-2 py-1 transition-all font-light rounded-md cursor-pointer'
+              'my-5 lg:my-0 whitespace-nowrap lg:whitespace-normal flex text-sm items-start justify-between px-2 py-1 transition-all font-light rounded-md cursor-pointer'
             )}
           >
             <p>{foodType}</p>

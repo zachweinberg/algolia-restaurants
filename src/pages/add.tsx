@@ -11,7 +11,7 @@ const Add: NextPage = () => {
   const [newRestaurant, setNewRestaurant] = useState<Partial<Restaurant>>({
     name: '',
     rounded_stars_count: 5,
-    city: '',
+    area: '',
     price_range: '',
     food_type: '',
   })
@@ -59,17 +59,17 @@ const Add: NextPage = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">City</label>
+            <label className="block text-sm font-medium text-gray-700">Area</label>
             <div className="mt-1">
               <input
-                value={newRestaurant.city}
+                value={newRestaurant.area}
                 onChange={(e) =>
-                  setNewRestaurant({ ...newRestaurant, city: e.target.value })
+                  setNewRestaurant({ ...newRestaurant, area: e.target.value })
                 }
                 type="text"
                 required
                 className="block w-full p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="City"
+                placeholder="Area"
               />
             </div>
           </div>
