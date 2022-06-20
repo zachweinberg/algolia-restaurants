@@ -12,7 +12,11 @@ const RestaurantCard = ({ hit, onClickDelete, isDeleting }) => {
 
   return (
     <div className="flex py-6 border-b border-gray-100">
-      <img className="w-24 h-24 rounded-sm" src={restaurant.image_url} />
+      <img
+        className="w-24 h-24 rounded-sm"
+        src={restaurant.image_url}
+        alt="restaurant image"
+      />
       <div className="flex items-end justify-between w-full ml-4">
         <div>
           <p className="text-lg font-semibold">{restaurant.name}</p>

@@ -44,10 +44,10 @@ const Home: NextPage = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto mt-10 border border-gray-200">
+    <div className="max-w-6xl mx-auto lg:border lg:border-gray-200 lg:mt-10">
       <RestaurantSearchBar />
 
-      <div className="flex">
+      <div className="flex flex-col lg:flex-row">
         <FoodTypeFilter foodTypes={allFoodTypes} />
         <SearchResults onClickDelete={onDeleteRestaurant} isDeleting={isDeleting} />
       </div>

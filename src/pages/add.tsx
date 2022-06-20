@@ -1,11 +1,13 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { addRestaurantToIndex } from '~/lib/algolia'
 import { Restaurant } from '~/types'
 
 const Add: NextPage = () => {
   const [saving, setSaving] = useState(false)
+  const router = useRouter()
   const [newRestaurant, setNewRestaurant] = useState<Partial<Restaurant>>({
     name: '',
     rounded_stars_count: 5,
@@ -19,6 +21,7 @@ const Add: NextPage = () => {
     try {
       setSaving(true)
       await addRestaurantToIndex(newRestaurant)
+      router.push('/')
     } catch (e) {
       console.error(e)
       alert('Could not create restaurant in Algolia index.')
@@ -28,8 +31,8 @@ const Add: NextPage = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto mt-10 border border-gray-200 shadow-md">
-      <form className="w-1/2 p-10 mx-auto" onSubmit={onSaveRestaurant}>
+    <div className="mx-auto lg:border lg:border-gray-200 lg:mt-10 lg:max-w-6xl">
+      <form className="p-10 mx-auto lg:w-1/2" onSubmit={onSaveRestaurant}>
         <Link href="/">
           <a className="text-sm text-blue-500">Back</a>
         </Link>

@@ -23,15 +23,15 @@ const FoodTypeFilter: React.FunctionComponent<Props> = ({ foodTypes }: Props) =>
   )
 
   return (
-    <aside className="py-6 h-[35rem] overflow-auto p-6 w-1/4 sticky top-0 border-r border-gray-200">
+    <aside className="lg:h-[35rem] overflow-auto lg:p-6 lg:w-1/4 sticky top-0 border-r border-gray-200">
       {/* TODO: Make sticky */}
-      <p className="mb-4 font-medium">
+      <p className="hidden mb-4 font-medium lg:block">
         Cuisine Type{' '}
         {Object.keys(currentFoodTypesSelected).length > 0 &&
           `(${Object.keys(currentFoodTypesSelected).length})`}
       </p>
 
-      <ul className="pl-2 space-y-2">
+      <ul className="flex items-center pl-2 space-x-2 lg:space-x-0 lg:space-y-2 lg:block">
         {Object.keys(foodTypes).map((foodType) => (
           <li
             key={foodType}
@@ -55,7 +55,7 @@ const FoodTypeFilter: React.FunctionComponent<Props> = ({ foodTypes }: Props) =>
             )}
           >
             <p>{foodType}</p>
-            <p>{foodTypes[foodType]}</p>
+            <p className="hidden lg:block">{foodTypes[foodType]}</p>
           </li>
         ))}
       </ul>
