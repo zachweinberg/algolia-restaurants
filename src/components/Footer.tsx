@@ -7,7 +7,7 @@ const Footer: React.FunctionComponent = () => {
           rel="noreferrer"
           href="https://algolia.com"
           target="_blank"
-          className="font-semibold hover:text-gray-700"
+          className="font-medium hover:text-gray-700"
         >
           Algolia
         </a>

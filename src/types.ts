@@ -1,3 +1,6 @@
+export interface FoodTypeMap {
+  [foodType: string]: number
+}
 export interface Restaurant {
   objectID: string
   name?: string

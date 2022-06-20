@@ -5,7 +5,7 @@ import '~/styles/globals.css'
 
 const ALGOLIA_INDEX_NAME = 'restaurants'
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <InstantSearch searchClient={searchClient} indexName={ALGOLIA_INDEX_NAME}>
       <Component {...pageProps} />
@@ -13,4 +13,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   )
 }
 
-export default MyApp
+export default App

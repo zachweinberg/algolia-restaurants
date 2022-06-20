@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { InfiniteHits, Hits } from 'react-instantsearch-hooks-web'
+import { Hits } from 'react-instantsearch-hooks-web'
 import { Restaurant } from '~/types'
 import StarRatingRow from './StarRatingRow'
 
@@ -11,7 +11,7 @@ const RestaurantCard = ({ hit, onClickDelete, isDeleting }) => {
   }
 
   return (
-    <div className="flex mb-6">
+    <div className="flex py-6 border-b border-gray-100">
       <img className="w-24 h-24 rounded-sm" src={restaurant.image_url} />
       <div className="flex items-end justify-between w-full ml-4">
         <div>
@@ -62,9 +62,9 @@ const SearchResults: React.FunctionComponent<Props> = ({
       <Hits
         hitComponent={(props) => (
           <RestaurantCard
+            {...props}
             onClickDelete={onClickDelete}
             isDeleting={isDeleting}
-            {...props}
           />
         )}
       />

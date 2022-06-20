@@ -128,7 +128,7 @@ const Add: NextPage = () => {
 
         <button
           disabled={saving}
-          className="p-3 mt-4 text-white bg-blue-500 rounded-md hover:bg-blue-600"
+          className="p-3 mt-6 text-sm text-white bg-blue-500 rounded-md hover:bg-blue-600"
         >
           {saving ? 'Saving...' : 'Save Restaurant'}
         </button>
